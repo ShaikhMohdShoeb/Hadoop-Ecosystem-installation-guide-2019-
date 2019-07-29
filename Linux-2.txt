@@ -1,0 +1,25 @@
+cloudlytics  @   Cloudlytics-PC :  ~   $   >>>> soldier login
+
+username         hostname         tilde
+				home directory 
+				of user who is 
+				logged in      
+
+
+command options arguments
+
+program -  --   
+
+
+cat > test1.txt   >>>> create file
+edit
+ctrl + D ___>>> save and exit
+
+cat >> test1.txt    >>>> append
+
+
+nano   vi   emacs
+
+ctrl +o  and ctrl +x   >>>> save and exit
+
+ 

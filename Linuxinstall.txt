@@ -1,0 +1,23 @@
+LVM - Logical volume management
+
+
+10G /-  operating system ; similar to C drive 
+
+30G /home -  home directory of all users 
+
+2 swap -  
+
+
+
+   /home/john
+   /home/jim
+
+
+ RAM - volatile 
+
+
+   app1 app3   ---->>> Ram
+
+app3 
+
+ swap -->> app2  (HDD) 

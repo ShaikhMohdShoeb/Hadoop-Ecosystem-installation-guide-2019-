@@ -1,0 +1,83 @@
+grep - regular expression
+
+
+cat passwd | grep /bin/bash
+
+ output       input
+
+
+bash - bourne again shell
+
+
+
+chown username file/dir
+
+chgrp groupname file/dir
+
+
+chown username:groupname file/dir
+
+read(r)    write(w)   execute(x)
+	   create
+	   modify
+	   delete	
+
+user/owner(u)    group(g)    others(o)
+
+ rwx                rwx        rwx
+
+
+  rw-  rwx  rw-
+
+  rw-  r--  r--
+
+
+chmod u+x file/dir
+chmod g+w file/dir
+
+
+chmod u-x file/dir
+
+
+read - 4    write - 2    execute 1
+
+user      group     others
+
+rwx       rwx	     rwx
+4+2+1
+=7
+
+
+rw-  rwx    rw-
+4+2  4+2+1  4+2
+=6    =7    =6
+676
+
+r--      r-x         -wx
+4	 4+1         2+1   
+	 =5           =3
+453
+
+rwx      rwx          r-x
+7 	 7            4+1
+		         5
+
+775
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

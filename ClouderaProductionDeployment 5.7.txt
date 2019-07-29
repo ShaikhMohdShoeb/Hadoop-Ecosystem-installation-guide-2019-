@@ -1,0 +1,124 @@
+﻿***********************************************
+	Cloudera production deployment 5.7.6
+***********************************************
+
+on aws launch instance with ubuntu 14 , 
+m4.xlarg
+100 gb hdd 
+for upgrade 5.7.6 to 5.9.3
+
+on terminal
+
+-----*** Update the server ***-----
+$ sudo apt-get update && sudo apt-get dist-upgrade -y
+
+-----*** Disable transparent huge pages ***-----
+$ sudo nano /etc/rc.local
+## Add these lines:
+
+if test -f /sys/kernel/mm/transparent_hugepage/enabled; then
+    echo never > /sys/kernel/mm/transparent_hugepage/enabled
+fi
+
+if test -f /sys/kernel/mm/transparent_hugepage/defrag; then
+    echo never > /sys/kernel/mm/transparent_hugepage/defrag
+fi
+
+$sudo -i
+
+$source /etc/rc.local 
+
+-----*** Install NTP ***-----
+
+$ sudo apt-get install ntp -y 
+$ sudo service ntp status
+## If it isn't running 
+$ sudo service ntp start 
+
+
+-----*** Set Swappiness ***-----
+
+sudo sysctl -a | grep vm.swappiness
+sudo sysctl vm.swappiness=1
+
+-----*** Setting root reserved space ***-----
+
+$ sudo lsblk
+$ sudo tune2fs -l /dev/xvda1
+$ sudo tune2fs -l /dev/xvda1 | egrep "Block count|Reserved block count" 
+$ sudo tune2fs -m 1 /dev/xvda1
+$ sudo tune2fs -l /dev/xvda1 | egrep "Block count|Reserved block count" 
+
+
+### Note : Now, save the instance to an image, call it “Cloudera Manager” Make sure to 
+check “No reboot”
+
+AMI clreated, launch AMI with same config for 5 instance
+
+
+on cm terminal
+
+curl https://archive.cloudera.com/cm5/ubuntu/trusty/amd64/cm/cloudera.list > cloudera-manager.list
+
+sudo nano clouder-manager.list 	 
+
+(change >>  deb https://archive.cloudera.com/cm5/ubuntu/lucid/amd64/cm trusty-cm5 contrib
+
+to
+
+deb https://archive.cloudera.com/cm5/ubuntu/lucid/amd64/cm trusty-cm5.7 contrib) ======= on 2 times 5.7
+
+
+sudo mv cloudera-manager.list /etc/apt/sources.list.d/
+
+sudo apt-key adv --recv-key --keyserver keyserver.ubuntu.com 327574EE02A818DD
+
+sudo apt-get update
+
+
+
+* Install Oracle java
+
+sudo apt-get install oracle-j2sdk1.7 -y
+
+
+
+* Install CM server
+
+sudo apt-get install cloudera-manager-daemons cloudera-manager-server
+
+
+
+* Start the embedded db
+
+sudo apt-get install cloudera-manager-server-db-2
+
+
+
+
+* Start db
+
+sudo service cloudera-scm-server-db start
+
+
+
+* Start CM server
+
+sudo service cloudera-scm-server start
+
+
+
+
+cm public ip:7180    ==== start cloudera manager webui
+
+
+
+
+ FQDN to add other instance into cluster
+
+
+balance the services accross instance
+
+
+congratulation cloudera manager 5.7 was successfully deployed
+

@@ -1,0 +1,24 @@
+Redhat -centos
+suse
+Debian ubuntu
+
+POSIX compliance 
+
+
+binaries - programs or apps
+dev - devices -->> block devices or HDD
+etc - configurations
+lib -libraries 
+
+media  - permanent
+mnt - temporary
+
+opt - optional
+
+sbin - superusers binaries
+
+srv - site specific data
+
+usr - multi user application
+
+var - variable
