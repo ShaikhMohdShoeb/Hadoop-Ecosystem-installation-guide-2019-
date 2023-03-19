@@ -1,1 +1,1 @@
-# Hadoop 2.x and Ecosystems services deploy
+# Hadoop 2.x and Ecosystem services deploy
